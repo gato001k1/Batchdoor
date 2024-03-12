@@ -1,4 +1,5 @@
 @echo off
+title batchdoor recive v1.2
 if exist curl.exe (
 goto curlpathsetb
 ) else (
@@ -41,7 +42,7 @@ if NOT EXIST sftpchecker (
 if exist hak (
     for %%A in (hak) do set local_file_size=%%~zA
 ) else (
-    echo The message file does not exist.
+    echo The hak file does not exist.
     set local_file_size=0
 )
 cd sftpchecker
@@ -50,7 +51,8 @@ if exist hak (
     for %%A in (hak) do set server_file_size=%%~zA
     cd ..
 ) else (
-    echo The message file does not exist.
+    cd ..
+    echo The hak file does not exist.
     set server_file_size=0
 )
 
@@ -59,16 +61,21 @@ echo File size on the local machine: %local_file_size%
 
 if %local_file_size% equ %server_file_size% (
     echo File is the same, no changes made.
+    goto sftpchecked
 ) else (
-    echo File has changed. Downloading file...
-    "%curlpath%" --user %username%:%password% -o hak %sftpmode%://%server%/hak -k
-    echo "%curlpath%" --user %username%:%password% -o hak %sftpmode%://%server%/hak -k
+    echo File has changed. Changing file...
+        "%curlpath%" --user %username%:%password% -o hak %sftpmode%://%server%/hak -k
+     setlocal enablesetdelayedexpansion
+       type hak >> haks
+    rem    > hak2 (
+ rem for /f "delims=" %%i in (hak) do (
+rem echo Don 
+ rem )
+rem )
     echo refreshing text screen
-    echo 0>text.refresh
+    echo 0 > text.refresh
     goto sftpchecked
 )
-goto sftpchecked
-
 
 :EOF
 exit
