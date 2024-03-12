@@ -1,5 +1,6 @@
 @echo off
 title DISPLAY
+type haks
 goto 2
 :loop
 if exist text.refresh (
@@ -9,9 +10,8 @@ goto 2
 )
 
 :2
-cls
-type hak
-echo terminal:#
+type haks
+echo Terminal:#
 if exist text.refresh (
     del text.refresh
 ) else (
