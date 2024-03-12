@@ -24,9 +24,10 @@ goto c
 )
 :c
 rem set up the ip addresses manually can be sftp or ftp dont enter the sftp://
-set "server2=rubin-free.falixserver.net:393"
-set "username2=vgsltqzafc.2969eda3"
-set "password2=nBCvvF56X"
+rem you can use ports
+set "server2=1"
+set "username2=1"
+set "password2=1"
 set "sftpmode2=sftp"
 :loop2
 if NOT EXIST sftpchecker (
