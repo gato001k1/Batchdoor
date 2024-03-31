@@ -67,11 +67,6 @@ if %local_file_size% equ %server_file_size% (
         "%curlpath%" --user %username%:%password% -o hak %sftpmode%://%server%/hak -k
      setlocal enablesetdelayedexpansion
        type hak >> haks
-    rem    > hak2 (
- rem for /f "delims=" %%i in (hak) do (
-rem echo Don 
- rem )
-rem )
     echo refreshing text screen
     echo 0 > text.refresh
     goto sftpchecked
